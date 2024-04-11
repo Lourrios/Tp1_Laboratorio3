@@ -1,4 +1,4 @@
-﻿namespace Tp1Programacion3
+﻿namespace Tp1Laboratorio3
 {
     public class Book
     {

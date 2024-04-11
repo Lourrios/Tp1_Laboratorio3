@@ -1,11 +1,11 @@
 using System.Collections.Concurrent;
 
-namespace Tp1Programacion3.Test.ConcurrentDictionaryTests
+namespace Tp1Laboratorio3.Test.ConcurrentDictionaryTests
 {
     public class BooksTest
     {
         [Fact]
-        public void Should_work_in_concurrency_properly()
+        public void Verificar_seguridad_con_hilos()
         {
             // Arrange
 
@@ -16,15 +16,15 @@ namespace Tp1Programacion3.Test.ConcurrentDictionaryTests
             // Agregar valores a la ConcurrentDictionary
             for (int i = 0; i < 3; i++)
             {
-                booksDictionary.TryAdd(i, new Book($"Harry Potter {1}", 335, "J.K. Rowling"));
+                booksDictionary.TryAdd(i, new Book($"Harry Potter {i}", 335, "J.K. Rowling"));
             }
 
             // Listas para almacenar los valores tomados por cada hilo
             List<Book> valuesTakenByThread1 = new List<Book>();
             List<Book> valuesTakenByThread2 = new List<Book>();
 
-            // Hilo1: toma valores 
-            Task task1 = Task.Factory.StartNew(() =>
+            // Hilo 1: toma valores 
+            Task task1 = Task.Run(() =>
             {
                 foreach (var item in booksDictionary)
                 {
@@ -34,8 +34,9 @@ namespace Tp1Programacion3.Test.ConcurrentDictionaryTests
                         valuesTakenByThread1.Add(value1);
                     }
                 }
-            });// Hilo1: toma valores 
-            Task task2 = Task.Factory.StartNew(() =>
+            });
+            // Hilo 2: toma valores 
+            Task task2 = Task.Run(() =>
             {
                 foreach (var item in booksDictionary)
                 {
@@ -44,10 +45,11 @@ namespace Tp1Programacion3.Test.ConcurrentDictionaryTests
                     {
                         valuesTakenByThread2.Add(value2);
                     }
+                    Thread.Sleep(1000); // simula prcesamiento
                 }
             });
 
-            // Espera a que ambos hilos completen
+            // Espera a que ambos hilos terinen de ejecutarse
             Task.WaitAll(task1, task2);
 
            
@@ -58,9 +60,6 @@ namespace Tp1Programacion3.Test.ConcurrentDictionaryTests
             {
                 Assert.DoesNotContain(value, valuesTakenByThread2);
             }
-            // Verificar que las collections no estan vacías (mejor quitarlo por que falla aveces)
-            //Assert.NotEmpty(valuesTakenByThread1);
-            //Assert.NotEmpty(valuesTakenByThread2);
 
             // Une ambas listas en una nueva 
             List<Book> listConcat = valuesTakenByThread1.Concat(valuesTakenByThread2).ToList(); ;

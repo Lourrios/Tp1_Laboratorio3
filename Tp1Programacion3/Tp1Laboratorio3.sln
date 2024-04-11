@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34701.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tp1Programacion3", "Tp1Programacion3.csproj", "{50D7068A-3F7C-42BB-87EE-9CC26E599226}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tp1Laboratorio3", "Tp1Laboratorio3.csproj", "{50D7068A-3F7C-42BB-87EE-9CC26E599226}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tp1Programacion3.Test", "..\Tp1Programacion3.Test\Tp1Programacion3.Test.csproj", "{D808283E-AA6C-4AE7-B9B3-7A0D0D6EB758}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tp1Laboratorio3.Test", "..\Tp1Programacion3.Test\Tp1Laboratorio3.Test.csproj", "{D808283E-AA6C-4AE7-B9B3-7A0D0D6EB758}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
